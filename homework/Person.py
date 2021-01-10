@@ -1,3 +1,5 @@
+from abc import ABC, abstractmethod
+
 HOUSES = [
     {'area': 40, 'cost': 40000},
     {'area': 50, 'cost': 50000},
@@ -6,7 +8,21 @@ HOUSES = [
 ]
 
 
-class Person:
+class Human(ABC):
+    @abstractmethod
+    def info(self):
+        raise NotImplemented('No data to display.')
+
+    @abstractmethod
+    def earn_money(self):
+        raise NotImplemented("I haven't money.")
+
+    @abstractmethod
+    def buy_house(self):
+        raise NotImplemented("Choose house")
+
+
+class Person(Human):
     def __init__(self, name, age):
         self.name = name
         self.age = age
