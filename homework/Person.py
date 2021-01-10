@@ -17,7 +17,6 @@ class House:
         print(f'Home with area: {self.area}m2 and cost: ${self.cost}')
 
 
-
 class Human(ABC):
     @abstractmethod
     def info(self):
@@ -33,11 +32,11 @@ class Human(ABC):
 
 
 class Person(Human):
-    def __init__(self, name, age):
+    def __init__(self, name, age, has_home):
         self.name = name
         self.age = age
         self.availability_money = 0
-        self.has_home = False
+        self.has_home = has_home
 
     def info(self):
         print(f'''
@@ -84,12 +83,12 @@ Having your own home: {self.has_home}
 
 
 if __name__ == '__main__':
-    human1 = Person("Ihor", 35)
+    human1 = Person("Ihor", 35, True)
     human1.earn_money(50000)
     human1.info()
     human1.buy_house()
 
-    human2 = Person("Ivan", 30)
+    human2 = Person("Ivan", 30, False)
     human2.earn_money(600000)
     human2.info()
     human2.buy_house()
