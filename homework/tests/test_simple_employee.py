@@ -1,13 +1,12 @@
 import unittest
 from homework.tests_simple_employee import Employee
+from homework.tests import utils
+from unittest import mock
 
 
 class TestEmployee(unittest.TestCase):
     def setUp(self):
         self.employee = Employee('Ihor', 'Piaskovskyi', 100)
-
-    def tearDown(self):
-        print("Tearing down!\n")
 
     def test_email(self):
         self.assertEqual(self.employee.email, 'Ihor.Piaskovskyi@email.com')
@@ -18,8 +17,10 @@ class TestEmployee(unittest.TestCase):
     def test_apply_raise(self):
         pass
 
-    def test_monthly_schedule(self):
-        pass
+    @mock.patch("homework.tests.utils.make_request", return_value=True)
+    def test_monthly_schedule(self, month):
+        response = utils.parse_response(self.employee.last, 3)
+        self.assertEqual(response, "Successful request")
 
 
 if __name__ == '__main__':
